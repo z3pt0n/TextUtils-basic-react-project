@@ -1,31 +1,24 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-export default function About() {
-    const [myStyle, setMyStyle] = useState(
-        {
-            color: 'black',
-            backgroundColor: 'white'
-        }
-    )
-    const [btnText, setBtnText] = useState("Enable Dark Mode")
+export default function About(props) {
 
-    const toggleStyle= () =>{
-       if( myStyle.color === "black"){
-        setMyStyle({color: 'white', backgroundColor: 'black', border:'2px solid white'})
-        setBtnText("Enable Light Mode")
-       }
-       else{
-        setMyStyle({color: 'black', backgroundColor: 'white'})
-        setBtnText("Enable Dark Mode")
-       }
+    // const [myStyle, setMyStyle] = useState(
+    //     {
+    //         color: 'black',
+    //         backgroundColor: 'white'
+    //     }
+    // )
 
+    let myStyle = {
+        color: props.mode ==='dark'?'white':'#042743',
+        backgroundColor: props.mode ==='dark'?'rgb(36 74 104)':'white',
     }
 
 
   return (
     <>
-    <div className="container" style={myStyle}>
-        <h1 className="my-3">About us</h1>
+    <div className="container">
+        <h1 className="my-3" style={{color: props.mode ==='dark'?'white':'#042743'}}>About us</h1>
         <div className="accordion accordion-flush" id="accordionFlushExample" style={myStyle}>
             <div className="accordion-item">
                 <h2 className="accordion-header">
@@ -57,9 +50,6 @@ export default function About() {
                 <div className="accordion-body" style={myStyle}>Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
                 </div>
             </div>
-        </div>
-        <div className="container my-3">
-            <button onClick={toggleStyle} type="button" className="btn btn-dark">{btnText}</button>
         </div>
     </div>
     </>
